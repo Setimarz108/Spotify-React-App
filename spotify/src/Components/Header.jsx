@@ -1,5 +1,5 @@
 import React from 'react'
-import SearchIcon from "@material-ui/icons/Search";
+import SearchIcon from "@mui/icons-material/Search";
 import { Avatar } from "@material-ui/core";
 
 export default function Header() {
