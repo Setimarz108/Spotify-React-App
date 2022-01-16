@@ -1,13 +1,48 @@
+import React, { useEffect } from "react";
+import SpotifyWebApi from "spotify-web-api-js";
+import { useStateValue } from "./ServiceProvider";
+import Player from "./Components/Player"
+import { getTokenFromUrl } from "./spotify";
+import "./App.css";
+import Login from "./Components/Login";
 
-import './App.css';
-import Player from './Components/Player';
+const s = new SpotifyWebApi();
 
 function App() {
-  return (
-    <div className="App">
-    
-       <Player/>
+  const [{ token }, dispatch] = useStateValue();
+
+  useEffect(() => {
+    // Set token
+    const hash = getTokenFromUrl();
+    window.location.hash = "";
+    let _token = hash.access_token;
+
+    if (_token) {
+      s.setAccessToken(_token);
+
+      dispatch({
+        type: "SET_TOKEN",
+        token: _token,
+      });
+ 
+     
+     
+
+      s.getMe().then((user) => {
+        dispatch({
+          type: "SET_USER",
+          user,
+        });
+      });
+
       
+    }
+  }, [token, dispatch]);
+
+  return (
+    <div className="app">
+      {!token && <Login />}
+      {token && <Player spotify={s} />}
     </div>
   );
 }

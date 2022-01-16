@@ -10,8 +10,7 @@ import { height } from '@mui/system';
 export default function Sidebar() {
     return (
         <div className='sidebar'>
-            <div className="logo"><img src="https://i.pinimg.com/originals/c4/5c/fe/c45cfed3c462db58662d9cbb771ba144.jpg" alt="" srcset="" style={{width:"50px", height:"40px", color:"white"}} />
-            <h2>Spotify</h2>  </div>
+            <img className='logo' src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg" alt="" srcset="" />
             <SidebarOption Icon={HomeIcon} title="Home"/>
             <SidebarOption Icon={SearchIcon}title="Search"/>
             <SidebarOption Icon={LibraryMusicIcon} title="Your library"/>
